@@ -11,23 +11,32 @@ const msg = document.getElementById("msg");
 form.addEventListener("submit", async (e) => {
     e.preventDefault();
 
+    msg.textContent = "Criando conta...";
+    msg.style.color = "#333";
+
     const email = form.querySelector('input[type="email"]').value;
     const password = form.querySelector('input[type="password"]').value;
 
-    const { error } = await supabase.auth.signUp({
+    const { data, error } = await supabase.auth.signUp({
         email,
-        password
+        password,
     });
 
     if (error) {
-        msg.textContent = "Erro: " + error.message;
+        msg.textContent = error.message;
         msg.style.color = "red";
+        return;
+    }
+
+    if (data.user && !data.user.confirmed_at) {
+        msg.textContent = "Conta criada ✅ Confirme no seu email.";
+        msg.style.color = "green";
     } else {
-        msg.textContent = "Conta criada ✅ Verifique seu email!";
+        msg.textContent = "Conta criada com sucesso ✅";
         msg.style.color = "green";
 
         setTimeout(() => {
             window.location.href = "index.html";
-        }, 3000);
+        }, 2000);
     }
 });
