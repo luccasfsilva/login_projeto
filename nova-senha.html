@@ -1,21 +1,27 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8">
-<title>Nova Senha</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <title>Nova Senha</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-<h2>Criar Nova Senha</h2>
+<div class="card">
+  <h2>Nova senha</h2>
 
-<form id="new-password-form">
-    <input type="password" placeholder="Nova senha" required>
-    <button type="submit">Salvar senha</button>
-</form>
+  <form id="nova-senha-form">
+    <div class="input-box">
+      <input type="password" required>
+      <label>Nova senha</label>
+    </div>
 
-<p id="msg"></p>
+    <button type="submit">Atualizar senha</button>
+  </form>
+
+  <p id="msg"></p>
+</div>
 
 <script type="module" src="nova-senha.js"></script>
 </body>
